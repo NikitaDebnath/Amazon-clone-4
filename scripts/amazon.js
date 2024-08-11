@@ -68,6 +68,8 @@ function updateQuantity(){
 
 };
 
+// adding items into cart
+
 document.querySelectorAll(".js-add-to-cart-button").forEach((button) => {
   button.addEventListener("click", () => {
     const productId = button.dataset.productId;
