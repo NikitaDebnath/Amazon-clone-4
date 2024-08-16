@@ -1,6 +1,7 @@
 import { cart } from "../../data/cart.js";
 import { getProduct } from "../../data/products.js";
 import { getDeliveryOption } from "../../data/deliveryOptions.js";
+import { formatCurrency } from "../utils/money.js";
 
 export function renderPaymentSummary(){
     let productPrice=0;
@@ -14,7 +15,7 @@ export function renderPaymentSummary(){
         shipingPriceCents+=Number((deliveryOptionPrice.priceCents).toFixed(2));
     });
     const totalPriceBeforeTax=Number((productPrice+shipingPriceCents).toFixed(2));
-    const totalaftertax=Number((totalPriceBeforeTax/0.1).toFixed(2));
+    const totalaftertax=Number((totalPriceBeforeTax*0.1).toFixed(2));
     const total=Number((totalPriceBeforeTax+totalaftertax).toFixed(2));
     const paymentSummaryHTMl=`
 
@@ -24,27 +25,27 @@ export function renderPaymentSummary(){
 
           <div class="payment-summary-row">
             <div>Items (3):</div>
-            <div class="payment-summary-money">₹${productPrice}</div>
+            <div class="payment-summary-money">$${formatCurrency(productPrice)}</div>
           </div>
 
           <div class="payment-summary-row">
             <div>Shipping &amp; handling:</div>
-            <div class="payment-summary-money">₹${shipingPriceCents}</div>
+            <div class="payment-summary-money">$${formatCurrency(shipingPriceCents)}</div>
           </div>
 
           <div class="payment-summary-row subtotal-row">
             <div>Total before tax:</div>
-            <div class="payment-summary-money">${totalPriceBeforeTax}</div>
+            <div class="payment-summary-money">$${formatCurrency(totalPriceBeforeTax)}</div>
           </div>
 
           <div class="payment-summary-row">
             <div>Estimated tax (10%):</div>
-            <div class="payment-summary-money">₹${totalaftertax}</div>
+            <div class="payment-summary-money">$${formatCurrency(totalaftertax)}</div>
           </div>
 
           <div class="payment-summary-row total-row">
             <div>Order total:</div>
-            <div class="payment-summary-money">₹${total}</div>
+            <div class="payment-summary-money">$${formatCurrency(total)}</div>
           </div>
 
           <button class="place-order-button button-primary">

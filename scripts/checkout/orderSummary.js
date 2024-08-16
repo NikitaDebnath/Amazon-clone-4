@@ -4,6 +4,7 @@ import { getProduct, products } from "../../data/products.js";
 import { deliveryOptions, getDeliveryOption } from "../../data/deliveryOptions.js";
 import dayjs from "https://unpkg.com/dayjs@1.11.10/esm/index.js";
 import { renderPaymentSummary } from "./paymentSummary.js";
+import { formatCurrency } from "../utils/money.js";
 
 export function renderOrderSummary(){
 
@@ -41,7 +42,7 @@ export function renderOrderSummary(){
                     ${matchingProduct.name}
                   </div>
                   <div class="product-price">
-                    ₹${matchingProduct.priceCents}
+                    $${formatCurrency(matchingProduct.priceCents)}
                   </div>
                   <div class="product-quantity">
                     <span>
@@ -90,7 +91,7 @@ export function renderOrderSummary(){
       const priceString =
         deliveryOptions.priceCents === 0
           ? "Free "
-          : `₹${deliveryOptions.priceCents}`;
+          : `$${formatCurrency(deliveryOptions.priceCents)}`;
 
       const ischecked = deliveryOptions.id === cartItem.deliveryOptionsId; //ckecked function
 
