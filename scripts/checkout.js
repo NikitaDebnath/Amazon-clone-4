@@ -18,7 +18,7 @@ import dayjs from "https://unpkg.com/dayjs@1.11.10/esm/index.js";
       }
     });
     const deliveryOptionId = cartItem.deliveryOptionsId;
-    let deliveryOption;
+    let deliveryOption = "";
     deliveryOptions.forEach((option) => {
       if (option.id === deliveryOptionId) {
         deliveryOption = option;
