@@ -14,8 +14,8 @@ export function renderPaymentSummary(){
         shipingPriceCents+=Number((deliveryOptionPrice.priceCents).toFixed(2));
     });
     const totalPriceBeforeTax=Number((productPrice+shipingPriceCents).toFixed(2));
-    const totalaftertax=Number((totalPriceBeforeTax/0.1).toFixed(2));
-    const total=Number((totalPriceBeforeTax+totalaftertax).toFixed(2));
+    const tax=Number((totalPriceBeforeTax*0.1).toFixed(2));
+    const total=Number((totalPriceBeforeTax+tax).toFixed(2));
     const paymentSummaryHTMl=`
 
     <div class="payment-summary-title">
@@ -39,7 +39,7 @@ export function renderPaymentSummary(){
 
           <div class="payment-summary-row">
             <div>Estimated tax (10%):</div>
-            <div class="payment-summary-money">₹${totalaftertax}</div>
+            <div class="payment-summary-money">₹${tax}</div>
           </div>
 
           <div class="payment-summary-row total-row">
