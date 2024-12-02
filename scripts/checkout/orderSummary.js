@@ -25,7 +25,7 @@ export function renderOrderSummary(){
     const deliveryDate = today.add(deliveryOption.deliveryDays, "days"); //do calculations 'add' function (build-in function of dayjs) for adding dates in todays var
     const dateString = deliveryDate.format("dddd,MMMM D"); //display in right format
 
-    cartSummaryHTML += ` <div class="cart-item-container js-cart-item-container-${
+    cartSummaryHTML += ` <div class="cart-item-container js-order-summary js-cart-item-container js-cart-item-container-${
       matchingProduct.id
     }"> 
               <div class="delivery-date">
@@ -44,8 +44,8 @@ export function renderOrderSummary(){
                   <div class="product-price">
                     $${formatCurrency(matchingProduct.priceCents)}
                   </div>
-                  <div class="product-quantity">
-                    <span>
+                  <div class="product-quantity ">
+                    <span class ="js-product-quantity-${matchingProduct.id}">
                       Quantity: <span class="quantity-label">${
                         cartItem.quantity
                       }</span>
@@ -53,7 +53,7 @@ export function renderOrderSummary(){
                     <span class="update-quantity-link link-primary">
                       Update
                     </span>
-                    <span class="delete-quantity-link link-primary js-delete-link" data-product-id="${
+                    <span class="delete-quantity-link link-primary js-delete-link js-delete-link-${matchingProduct.id}" data-product-id="${
                       matchingProduct.id
                     }">
                       Delete
@@ -148,7 +148,7 @@ export function renderOrderSummary(){
   });
 
 }
-renderOrderSummary();
+
 
 
  
